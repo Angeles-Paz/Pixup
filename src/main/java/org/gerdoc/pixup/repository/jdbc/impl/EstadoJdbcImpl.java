@@ -1,5 +1,6 @@
 package org.gerdoc.pixup.repository.jdbc.impl;
 
+import com.mysql.cj.PreparedQuery;
 import org.gerdoc.pixup.repository.jdbc.Conexion;
 import org.gerdoc.pixup.repository.jdbc.EstadoJdbc;
 import org.gerdoc.pixup.model.Estado;
@@ -120,14 +121,37 @@ public class EstadoJdbcImpl extends Conexion<Estado> implements EstadoJdbc
 
     @Override
     public Estado findById( Integer id ) {
-        EstadoJdbc estadoJdbc = EstadoJdbcImpl.getInstance();
-        List<Estado> estados = estadoJdbc.findAll();
-        for ( Estado estado : estados){
-            if(estado.getId() == id){
-                return estado;
+        PreparedStatement preparedStatement= null;
+        ResultSet resultSet = null;
+        Estado estado = null;
+        String query ="Select * from TBL_ESTADO where id=?";
+
+        try
+        {
+            if( openConnection() )
+            {
+                System.out.println("Error en conexión");
+                return null;
             }
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                System.out.println("El id ingresado no existe");
+                return null;
+            }
+            estado = new Estado();
+            estado.setId( resultSet.getInt( 1 ) );
+            estado.setNombre( resultSet.getString( 2 ) );
+            resultSet.close( );
+            preparedStatement.close();
+            closeConnection( );
+            return estado;
         }
-        System.out.println("id no encontrado");
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
         return null;
     }
 

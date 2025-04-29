@@ -28,7 +28,7 @@ class EstadoJdbcImplTest {
         Estado estado = new Estado();
         boolean res = false;
         EstadoJdbc estadoJdbc = EstadoJdbcImpl.getInstance();
-        estado.setNombre("AGUASCALIENTES");
+        estado.setNombre("HIDALGO");
         res = estadoJdbc.save( estado );
         assertEquals(true, res);
     }
@@ -54,7 +54,7 @@ class EstadoJdbcImplTest {
     @org.junit.jupiter.api.Test
     void findById() {
         Estado estado;
-        Integer id = 3;
+        Integer id = 1;
         EstadoJdbc estadoJdbc = EstadoJdbcImpl.getInstance();
         estado = estadoJdbc.findById( id );
         System.out.println(estado);

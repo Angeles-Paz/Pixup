@@ -123,14 +123,38 @@ public class MunicipioJdbcImpl extends Conexion<Municipio> implements MunicipioJ
 
     @Override
     public Municipio findById( Integer id ) {
-        MunicipioJdbc municipioJdbc1 = MunicipioJdbcImpl.getInstance();
-        List<Municipio> municipios = municipioJdbc.findAll();
-        for ( Municipio municipio : municipios){
-            if(municipio.getId() == id){
-                return municipio;
+        PreparedStatement preparedStatement= null;
+        ResultSet resultSet = null;
+        Municipio municipio = null;
+        String query ="Select * from TBL_MUNICIPIO where id=?";
+
+        try
+        {
+            if( openConnection() )
+            {
+                System.out.println("Error en conexión");
+                return null;
             }
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                System.out.println("El id ingresado no existe");
+                return null;
+            }
+            municipio = new Municipio();
+            municipio.setId( resultSet.getInt( 1 ) );
+            municipio.setNombre( resultSet.getString( 2 ) );
+            municipio.setIdEstado( resultSet.getInt(3));
+            resultSet.close( );
+            preparedStatement.close();
+            closeConnection( );
+            return municipio;
         }
-        System.out.println("id no encontrado");
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -147,7 +171,7 @@ public class MunicipioJdbcImpl extends Conexion<Municipio> implements MunicipioJ
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, municipio.getId());
             res = preparedStatement.executeUpdate();
-            query = "alter table tbl_estado auto_increment=0;";
+            query = "alter table tbl_municipio auto_increment=0;";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
             preparedStatement.close();
