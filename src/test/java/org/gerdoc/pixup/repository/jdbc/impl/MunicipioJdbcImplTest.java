@@ -1,8 +1,5 @@
 package org.gerdoc.pixup.repository.jdbc.impl;
-
-import org.gerdoc.pixup.model.Estado;
 import org.gerdoc.pixup.model.Municipio;
-import org.gerdoc.pixup.repository.jdbc.EstadoJdbc;
 import org.gerdoc.pixup.repository.jdbc.MunicipioJdbc;
 import org.junit.jupiter.api.Test;
 
