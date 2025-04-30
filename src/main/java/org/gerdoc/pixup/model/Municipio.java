@@ -1,38 +1,22 @@
 package org.gerdoc.pixup.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Entity
+@Table( name = "TBL_MUNICIPIO" )
 public class Municipio extends Catalogo
 {
+    @Column( name ="MUNICIPIO" , nullable = false )
     private String nombre;
+
+    @Column( name ="TBL_ESTADO_ID" , nullable = false )
     private Integer idEstado;
-
-    public Municipio()
-    {
-    }
-
-    public String getNombre()
-    {
-        return nombre;
-    }
-
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
-
-    public Integer getIdEstado() {
-        return idEstado;
-    }
-
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Municipio{" +
-                "nombre='" + nombre + '\'' +
-                ", id=" + id + ", idEstado=" + idEstado +
-                '}';
-    }
 }
