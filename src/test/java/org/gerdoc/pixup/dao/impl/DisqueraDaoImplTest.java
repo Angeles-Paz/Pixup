@@ -36,29 +36,25 @@ class DisqueraDaoImplTest {
         Disquera disquera = null;
         boolean res = false;
         disquera = new Disquera();
-        disquera.setNombre( "HOLLYWOOD RECORDS" );
+        disquera.setNombre( "DISQUERA FELIZ" );
         res = disqueraDao.save( disquera );
         assertTrue( res );
 
     }
-
     @Test
     void update() {
-
         DisqueraDao disqueraDao = DisqueraDaoImpl.getInstance();
         Disquera disquera = null;
         boolean res = false;
         disquera = disqueraDao.findById( 2 );
         assertNotNull( disquera );
-        disquera.setNombre( "ISLAND RECORDS" );
+        disquera.setNombre( "DISCOS PEERLESS" );
         res = disqueraDao.update( disquera );
         assertTrue( res );
 
     }
-
     @Test
     void delete() {
-
         DisqueraDao disqueraDao = DisqueraDaoImpl.getInstance();
         Disquera disquera = null;
         boolean res = false;
@@ -68,15 +64,13 @@ class DisqueraDaoImplTest {
         assertTrue( res );
 
     }
-
     @Test
     void findById() {
-
         DisqueraDao disqueraDao = DisqueraDaoImpl.getInstance();
         Disquera disquera = null;
-        disquera = disqueraDao.findById( 1 );
+        disquera = disqueraDao.findById( 2 );
         assertNotNull( disquera );
-        assertEquals(1, disquera.getId());
+        assertEquals(2, disquera.getId());
         assertEquals("DISCOS PEERLESS", disquera.getNombre());
         System.out.println( disquera );
 

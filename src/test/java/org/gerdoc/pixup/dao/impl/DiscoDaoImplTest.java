@@ -43,8 +43,10 @@ class DiscoDaoImplTest {
         disco.setDescuento(120.00f);
         disco.setFechaLanzamiento(LocalDate.of(1979, 1, 1));
         disco.setImagen("Julio jaramillo tocando la guitarra");
-        disco.setIdArtista(1);
-        disco.setIdDisquera(1);
+        disco.setIdCancion( 3 );
+        disco.setIdArtista( 3 );
+        disco.setIdDisquera( 3 );
+        disco.setIdGenero( 1 );
         res = discoDao.save( disco );
         assertTrue( res );
 
@@ -64,8 +66,10 @@ class DiscoDaoImplTest {
         disco.setDescuento(320.00f);
         disco.setFechaLanzamiento(LocalDate.of(2024, 8, 23));
         disco.setImagen("Una foto muy coqueta de Sabrina Carpenter");
-        disco.setIdArtista(2);
-        disco.setIdDisquera(2);
+        disco.setIdCancion( 2 );
+        disco.setIdArtista( 2 );
+        disco.setIdDisquera( 2 );
+        disco.setIdGenero( 3 );
         res = discoDao.update( disco );
         assertTrue( res );
 
@@ -77,7 +81,7 @@ class DiscoDaoImplTest {
         DiscoDao discoDao = DiscoDaoImpl.getInstance();
         Disco disco = null;
         boolean res = false;
-        disco = discoDao.findById( 2 );
+        disco = discoDao.findById( 3 );
         assertNotNull( disco );
         res = discoDao.delete( disco );
         assertTrue( res );
@@ -98,8 +102,10 @@ class DiscoDaoImplTest {
         assertEquals(320.00f, disco.getDescuento());
         assertEquals(LocalDate.of(2024, 8, 23), disco.getFechaLanzamiento());
         assertEquals("Una foto muy coqueta de Sabrina Carpenter", disco.getImagen());
+        assertEquals( 2, disco.getIdCancion());
         assertEquals(2, disco.getIdArtista());
         assertEquals(2, disco.getIdDisquera());
+        assertEquals( 3, disco.getIdGenero());
         System.out.println( disco );
 
     }

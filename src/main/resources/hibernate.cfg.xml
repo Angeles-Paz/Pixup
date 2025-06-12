@@ -20,15 +20,17 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">none</property>
 		<property name="hibernate.transform_hbm_xml.enabled">true</property>
-		<mapping class="org.gerdoc.pixup.model.Estado"/>
-		<mapping class="org.gerdoc.pixup.model.Municipio"/>
-		<mapping class="org.gerdoc.pixup.model.Colonia"/>
 		<mapping class="org.gerdoc.pixup.model.Artista"/>
-		<mapping class="org.gerdoc.pixup.model.Disquera"/>
+		<mapping class="org.gerdoc.pixup.model.Cancion"/>
+		<mapping class="org.gerdoc.pixup.model.Colonia"/>
 		<mapping class="org.gerdoc.pixup.model.Disco"/>
-		<mapping class="org.gerdoc.pixup.model.Usuario"/>
+		<mapping class="org.gerdoc.pixup.model.Disquera"/>
 		<mapping class="org.gerdoc.pixup.model.Domicilio"/>
+		<mapping class="org.gerdoc.pixup.model.Estado"/>
+		<mapping class="org.gerdoc.pixup.model.Genero"/>
+		<mapping class="org.gerdoc.pixup.model.Municipio"/>
 		<mapping class="org.gerdoc.pixup.model.Orden"/>
+		<mapping class="org.gerdoc.pixup.model.Usuario"/>
 
     </session-factory>
 </hibernate-configuration>

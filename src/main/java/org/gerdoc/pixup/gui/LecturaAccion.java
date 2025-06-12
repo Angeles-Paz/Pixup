@@ -35,10 +35,11 @@ public abstract class LecturaAccion implements Ejecutable
                 {
                     procesaOpcion( );
                 }
+            } else {
+                System.out.println( "\n--/Opcion Invalida, intentelo nuevamente/--\n" );
             }
         }
     }
-
     public void setFlag(boolean flag)
     {
         this.flag = flag;

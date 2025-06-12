@@ -1,5 +1,7 @@
 package org.gerdoc.pixup.util;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ReadUtil
@@ -52,22 +54,46 @@ public class ReadUtil
                 }
                 catch (Exception e)
                 {
+                    System.out.println(" Numero Invalido ");
                 }
             }
-            System.out.println( "Valor incorrecto, intentelo nuevamente" );
         }
         return null;
     }
 
-    public static Integer string2Integer( String valor )
-    {
-        try
-        {
-            return Integer.valueOf(valor);
+    public static Float readFloat() {
+        String valor;
+        while (true) {
+            valor = read();
+            try {
+                return Float.valueOf(valor);
+            } catch (NumberFormatException e) {
+                System.out.print(" Numero Invalido ");
+            }
         }
-        catch (Exception e)
-        {
+    }
+
+    public static LocalDate readLocalDate() {
+        String valor;
+        while (true) {
+            valor = read();
+            try {
+                return LocalDate.parse(valor);
+            } catch (NumberFormatException e) {
+                System.out.print(" Fecha invalida ");
+            }
         }
-        return null;
+    }
+
+    public static LocalTime readLocalTime() {
+        String valor;
+        while (true) {
+            valor = read();
+            try {
+                return LocalTime.parse(valor);
+            } catch (NumberFormatException e) {
+                System.out.print("Tiempo invalido ");
+            }
+        }
     }
 }

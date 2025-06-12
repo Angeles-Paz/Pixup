@@ -2,7 +2,6 @@ package org.gerdoc.pixup.gui.consola;
 
 import org.gerdoc.pixup.gui.LecturaAccion;
 import org.gerdoc.pixup.model.Catalogo;
-import org.gerdoc.pixup.util.ReadUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +9,6 @@ import java.util.List;
 public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
 {
     protected List<T>list;
-    protected T t;
-    protected boolean flag2;
 
     public Catalogos()
     {
@@ -23,79 +20,46 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
         return list.isEmpty();
     }
 
-    public void print( )
-    {
-        if( isListEmpty( ) )
-        {
-            System.out.println( "No hay elementos");
-        }
-        list.stream().forEach( System.out::println );
-    }
-
-    public abstract T newT( );
-    public abstract boolean processNewT( T t );
-    public abstract void processEditT( T t );
+    protected abstract String tcatalogo();
+    public abstract void addT( );
+    public abstract void editT( );
+    public abstract void removeT( );
+    public abstract void findT( );
+    public abstract void printT( );
 
     public void add( )
     {
-        t = newT( );
-        if( processNewT( t ) )
-        {
-            t.setId( list.size( ) + 1 );
-            list.add( t );
-        }
+        System.out.println("{{- Agregar " + tcatalogo() + " -}}");
+        addT();
+        System.out.println("-----------------------------------------------------------");
     }
 
     public void edit( )
     {
-        if( isListEmpty( ) )
-        {
-            System.out.println( "No hay elementos" );
-            return;
-        }
-        flag2 = true;
-        while ( flag2 )
-        {
-            System.out.println( "Ingrese el id del elemento a editar" );
-            print( );
-            t = list.stream().filter( e -> e.getId().equals( ReadUtil.readInt( ) ) ).findFirst().orElse( null );
-            if( t == null )
-            {
-                System.out.println( "Id incorrecto, intentelo nuevamente" );
-            }
-            else
-            {
-                processEditT( t );
-                flag2 = false;
-                System.out.println( "Elemento modificado" );
-            }
-        }
+        System.out.println("{{- Editar " + tcatalogo() + " -}}");
+        editT();
+        System.out.println("-----------------------------------------------------------");
     }
 
     public void remove( )
     {
-        if( isListEmpty( ) )
-        {
-            System.out.println( "No hay elementos" );
-            return;
-        }
-        flag2 = true;
-        while ( flag2 )
-        {
-            System.out.println( "Ingrese el id del elemento a borrar" );
-            print( );
-            t = list.stream().filter( e -> e.getId().equals( ReadUtil.readInt( ) ) ).findFirst().orElse( null );
-            if( t==null )
-            {
-                System.out.println( "Id incorrecto, intentelo nuevamente" );
-            }
-            else
-            {
-                list.remove( t );
-                flag2 = false;
-                System.out.println( "Elemento borrado" );
-            }
-        }
+        System.out.println("{{- Eliminar " + tcatalogo() + " -}}");
+        removeT();
+        System.out.println("-----------------------------------------------------------");
+    }
+
+    public void find( )
+    {
+        System.out.println("{{- Buscar " + tcatalogo() + " -}}");
+        findT();
+        System.out.println("-----------------------------------------------------------");
+    }
+
+    public void print( )
+    {
+        System.out.println("{{- Desplegar " + tcatalogo() + " -}}");
+        printT();
+        System.out.println("-----------------------------------------------------------");
     }
 
     @Override
@@ -113,6 +77,9 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
                 remove( );
                 break;
             case 4:
+                find( );
+                break;
+            case 5:
                 print( );
                 break;
         }
@@ -121,13 +88,14 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
     @Override
     public void despliegaMenu()
     {
-        System.out.println("Menú de Estado:");
-        System.out.println("Seleccione una opcion:");
-        System.out.println("1.-Agregar");
-        System.out.println("2.-Editar");
-        System.out.println("3.-Borrar");
-        System.out.println("4.-Imprimir");
-        System.out.println("5.-Salir");
+        System.out.println("///----" + tcatalogo() + "---///)");
+        System.out.println("[---Selecciona una accion---]");
+        System.out.println("1.- Crear");
+        System.out.println("2.- Editar");
+        System.out.println("3.- Eliminar");
+        System.out.println("4.- Buscar por ID");
+        System.out.println("5.- Mostrar registros");
+        System.out.println("6.- Salir");
     }
 
     @Override
@@ -139,7 +107,7 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
     @Override
     public int valorMaxMenu()
     {
-        return 5;
+        return 6;
     }
 
 }

@@ -34,9 +34,15 @@ public class Disco extends Catalogo
     @Column( name ="IMAGEN" , nullable = false )
     private String imagen;
 
+    @Column( name ="TBL_CANCION_ID" , nullable = false )
+    private Integer idCancion;
+
     @Column( name ="TBL_ARTISTA_ID" , nullable = false )
     private Integer idArtista;
 
     @Column( name ="TBL_DISQUERA_ID" , nullable = false )
     private Integer idDisquera;
+
+    @Column( name ="TBL_GENERO_ID" , nullable = false )
+    private Integer idGenero;
 }

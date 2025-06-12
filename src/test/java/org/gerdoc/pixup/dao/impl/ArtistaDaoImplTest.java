@@ -36,12 +36,11 @@ class ArtistaDaoImplTest {
         Artista artista = null;
         boolean res = false;
         artista = new Artista();
-        artista.setNombre( "SABRINA CARPENTER" );
+        artista.setNombre( "TAYLOR THE CREATOR" );
         res = artistaDao.save( artista );
         assertTrue( res );
 
     }
-
     @Test
     void update() {
 
@@ -55,20 +54,18 @@ class ArtistaDaoImplTest {
         assertTrue( res );
 
     }
-
     @Test
     void delete() {
 
         ArtistaDao artistaDao = ArtistaDaoImpl.getInstance();
         Artista artista = null;
         boolean res = false;
-        artista = artistaDao.findById( 2 );
+        artista = artistaDao.findById( 1 );
         assertNotNull( artista );
         res = artistaDao.delete( artista );
         assertTrue( res );
 
     }
-
     @Test
     void findById() {
 

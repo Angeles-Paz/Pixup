@@ -24,7 +24,7 @@ public class ConsolaVentana  extends LecturaAccion
     @Override
     public void despliegaMenu()
     {
-        System.out.println("Seleccione una opcion:");
+        System.out.println("[---Selecciona una opción---]");
         System.out.println("1.-Consola");
         System.out.println("2.-Ventana");
         System.out.println("3.-Salir");
